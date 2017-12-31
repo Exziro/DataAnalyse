@@ -33,3 +33,28 @@ def createDataSet():
     labels = ['no surfacing', 'flippers']
     # change to discrete values
     return dataSet, labels
+def calcShannonEnt(dataSet):
+    """calcShannonEnt(calculate Shannon entropy 计算给定数据集的香农熵)
+    Args:
+        dataSet 数据集
+    Returns:
+        返回 每一组feature下的某个分类下，香农熵的信息期望
+    """
+    # -----------计算香农熵的第一种实现方式start--------------------------------------------------------------------------------
+    # 求list的长度，表示计算参与训练的数据量
+    numEntries = len(dataSet)
+    # 下面输出我们测试的数据集的一些信息
+    # 例如：<type 'list'> numEntries:  5 是下面的代码的输出
+    # print type(dataSet), 'numEntries: ', numEntries
+
+    # 计算分类标签label出现的次数
+    labelCounts = {}
+    # the the number of unique elements and their occurance
+    for featVec in dataSet:
+        # 将当前实例的标签存储，即每一行数据的最后一个数据代表的是标签
+        currentLabel = featVec[-1]
+        # 为所有可能的分类创建字典，如果当前的键值不存在，则扩展字典并将当前键值加入字典。每个键值都记录了当前类别出现的次数。
+        if currentLabel not in labelCounts.keys():
+            labelCounts[currentLabel] = 0
+        labelCounts[currentLabel] += 1
+        # print '-----', featVec, labelCounts
