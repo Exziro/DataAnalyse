@@ -58,3 +58,16 @@ def calcShannonEnt(dataSet):
             labelCounts[currentLabel] = 0
         labelCounts[currentLabel] += 1
         # print '-----', featVec, labelCounts
+    # 计算分类标签label出现的次数
+    labelCounts = {}
+    # the the number of unique elements and their occurance
+    for featVec in dataSet:
+        # 将当前实例的标签存储，即每一行数据的最后一个数据代表的是标签
+        currentLabel = featVec[-1]
+        # 为所有可能的分类创建字典，如果当前的键值不存在，则扩展字典并将当前键值加入字典。每个键值都记录了当前类别出现的次数。
+        if currentLabel not in labelCounts.keys():
+            labelCounts[currentLabel] = 0
+        labelCounts[currentLabel] += 1
+        # print '-----', featVec, labelCounts
+
+    # 对于label标签的占比，求出label标签的香农熵
