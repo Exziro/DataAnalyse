@@ -71,3 +71,22 @@ def calcShannonEnt(dataSet):
         # print '-----', featVec, labelCounts
 
     # 对于label标签的占比，求出label标签的香农熵
+        shannonEnt = 0.0
+    for key in labelCounts:
+        # 使用所有类标签的发生频率计算类别出现的概率。
+        prob = float(labelCounts[key])/numEntries
+        # log base 2 
+        # 计算香农熵，以 2 为底求对数
+        shannonEnt -= prob * log(prob, 2)
+        # print '---', prob, prob * log(prob, 2), shannonEnt
+    # -----------计算香农熵的第一种实现方式end--------------------------------------------------------------------------------
+
+    # # -----------计算香农熵的第二种实现方式start--------------------------------------------------------------------------------
+    # # 统计标签出现的次数
+    # label_count = Counter(data[-1] for data in dataSet)
+    # # 计算概率
+    # probs = [p[1] / len(dataSet) for p in label_count.items()]
+    # # 计算香农熵
+    # shannonEnt = sum([-p * log(p, 2) for p in probs])
+    # # -----------计算香农熵的第二种实现方式end--------------------------------------------------------------------------------
+    return shannonEnt
