@@ -156,3 +156,22 @@ def chooseBestFeatureToSplit(dataSet):
             bestInfoGain = infoGain
             bestFeature = i
     return bestFeature
+    # # -----------选择最优特征的第二种方式 start------------------------------------
+    # # 计算初始香农熵
+    # base_entropy = calcShannonEnt(dataSet)
+    # best_info_gain = 0
+    # best_feature = -1
+    # # 遍历每一个特征
+    # for i in range(len(dataSet[0]) - 1):
+    #     # 对当前特征进行统计
+    #     feature_count = Counter([data[i] for data in dataSet])
+    #     # 计算分割后的香农熵
+    #     new_entropy = sum(feature[1] / float(len(dataSet)) * calcShannonEnt(splitDataSet(dataSet, i, feature[0])) \
+    #                    for feature in feature_count.items())
+    #     # 更新值
+    #     info_gain = base_entropy - new_entropy
+    #     print('No. {0} feature info gain is {1:.3f}'.format(i, info_gain))
+    #     if info_gain > best_info_gain:
+    #         best_info_gain = info_gain
+    #         best_feature = i
+    # return best_feature
