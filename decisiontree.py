@@ -175,3 +175,10 @@ def chooseBestFeatureToSplit(dataSet):
     #         best_info_gain = info_gain
     #         best_feature = i
     # return best_feature
+    def majorityCnt(classList):
+    """majorityCnt(选择出现次数最多的一个结果)
+    Args:
+        classList label列的集合
+    Returns:
+        bestFeature 最优的特征列
+    """
