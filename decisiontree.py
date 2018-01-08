@@ -193,3 +193,9 @@ def chooseBestFeatureToSplit(dataSet):
     # print 'sortedClassCount:', sortedClassCount
     return sortedClassCount[0][0]
     # -----------majorityCnt的第一种方式 end------------------------------------
+    # -----------majorityCnt的第一种方式 end------------------------------------
+
+    # # -----------majorityCnt的第二种方式 start------------------------------------
+    # major_label = Counter(classList).most_common(1)[0]
+    # return major_label
+    # # -----------majorityCnt的第二种方式 end------------------------------------
