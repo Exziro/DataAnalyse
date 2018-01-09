@@ -199,3 +199,10 @@ def chooseBestFeatureToSplit(dataSet):
     # major_label = Counter(classList).most_common(1)[0]
     # return major_label
     # # -----------majorityCnt的第二种方式 end------------------------------------
+    def createTree(dataSet, labels):
+    classList = [example[-1] for example in dataSet]
+    # 如果数据集的最后一列的第一个值出现的次数=整个集合的数量，也就说只有一个类别，就只直接返回结果就行
+    # 第一个停止条件：所有的类标签完全相同，则直接返回该类标签。
+    # count() 函数是统计括号中的值在list中出现的次数
+    if classList.count(classList[0]) == len(classList):
+        return classList[0]
