@@ -219,3 +219,14 @@ def chooseBestFeatureToSplit(dataSet):
     myTree = {bestFeatLabel: {}}
     # 注：labels列表是可变对象，在PYTHON函数中作为参数时传址引用，能够被全局修改
     # 所以这行代码导致函数外的同名变量被删除了元素，造成例句无法执行，提示'no surfacing' is not in list
+        del(labels[bestFeat])
+    # 取出最优列，然后它的branch做分类
+    featValues = [example[bestFeat] for example in dataSet]
+    uniqueVals = set(featValues)
+    for value in uniqueVals:
+        # 求出剩余的标签label
+        subLabels = labels[:]
+        # 遍历当前选择特征包含的所有属性值，在每个数据集划分上递归调用函数createTree()
+        myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), subLabels)
+        # print 'myTree', value, myTree
+    return myTree
