@@ -230,3 +230,14 @@ def chooseBestFeatureToSplit(dataSet):
         myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), subLabels)
         # print 'myTree', value, myTree
     return myTree
+
+
+def classify(inputTree, featLabels, testVec):
+    """classify(给输入的节点，进行分类)
+    Args:
+        inputTree  决策树模型
+        featLabels Feature标签对应的名称
+        testVec    测试输入的数据
+    Returns:
+        classLabel 分类的结果值，需要映射label才能知道名称
+    """
