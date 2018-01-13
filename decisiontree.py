@@ -241,3 +241,19 @@ def classify(inputTree, featLabels, testVec):
     Returns:
         classLabel 分类的结果值，需要映射label才能知道名称
     """
+        # 获取tree的根节点对于的key值
+    firstStr = inputTree.keys()[0]
+    # 通过key得到根节点对应的value
+    secondDict = inputTree[firstStr]
+    # 判断根节点名称获取根节点在label中的先后顺序，这样就知道输入的testVec怎么开始对照树来做分类
+    featIndex = featLabels.index(firstStr)
+    # 测试数据，找到根节点对应的label位置，也就知道从输入的数据的第几位来开始分类
+    key = testVec[featIndex]
+    valueOfFeat = secondDict[key]
+    print '+++', firstStr, 'xxx', secondDict, '---', key, '>>>', valueOfFeat
+    # 判断分枝是否结束: 判断valueOfFeat是否是dict类型
+    if isinstance(valueOfFeat, dict):
+        classLabel = classify(valueOfFeat, featLabels, testVec)
+    else:
+        classLabel = valueOfFeat
+    return classLabel
