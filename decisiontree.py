@@ -257,3 +257,15 @@ def classify(inputTree, featLabels, testVec):
     else:
         classLabel = valueOfFeat
     return classLabel
+def storeTree(inputTree, filename):
+    import pickle
+    # -------------- 第一种方法 start --------------
+    fw = open(filename, 'w')
+    pickle.dump(inputTree, fw)
+    fw.close()
+    # -------------- 第一种方法 end --------------
+
+    # -------------- 第二种方法 start --------------
+    with open(filename, 'w') as fw:
+        pickle.dump(inputTree, fw)
+    # -------------- 第二种方法 start --------------
