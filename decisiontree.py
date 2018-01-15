@@ -269,3 +269,7 @@ def storeTree(inputTree, filename):
     with open(filename, 'w') as fw:
         pickle.dump(inputTree, fw)
     # -------------- 第二种方法 start --------------
+def grabTree(filename):
+    import pickle
+    fr = open(filename)
+    return pickle.load(fr)
