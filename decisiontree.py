@@ -273,3 +273,26 @@ def grabTree(filename):
     import pickle
     fr = open(filename)
     return pickle.load(fr)
+def fishTest():
+    # 1.创建数据和结果标签
+    myDat, labels = createDataSet()
+    # print myDat, labels
+
+    # 计算label分类标签的香农熵
+    # calcShannonEnt(myDat)
+
+    # # 求第0列 为 1/0的列的数据集【排除第0列】
+    # print '1---', splitDataSet(myDat, 0, 1)
+    # print '0---', splitDataSet(myDat, 0, 0)
+
+    # # 计算最好的信息增益的列
+    # print chooseBestFeatureToSplit(myDat)
+
+    import copy
+    myTree = createTree(myDat, copy.deepcopy(labels))
+    print myTree
+    # [1, 1]表示要取的分支上的节点位置，对应的结果值
+    print classify(myTree, labels, [1, 1])
+
+    # 画图可视化展现
+    dtPlot.createPlot(myTree)
