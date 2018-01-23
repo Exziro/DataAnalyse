@@ -146,3 +146,10 @@ def classifyNB(vec2Classify, p0Vec, p1Vec, pClass1):
         return 1
     else:
         return 0
+def bagOfWords2VecMN(vocabList, inputSet):
+    returnVec = [0] * len(vocabList)
+    for word in inputSet:
+        if word in vocabList:
+            returnVec[vocabList.index(word)] += 1
+    return returnVec
+
