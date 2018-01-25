@@ -175,4 +175,20 @@ def testingNB():
     thisDoc = array(setOfWords2Vec(myVocabList, testEntry))
     print testEntry, 'classified as: ', classifyNB(thisDoc, p0V, p1V, pAb)
 
+# 项目案例2: 使用朴素贝叶斯过滤垃圾邮件
+
+# 切分文本
+def textParse(bigString):
+    '''
+    Desc:
+        接收一个大字符串并将其解析为字符串列表
+    Args:
+        bigString -- 大字符串
+    Returns:
+        去掉少于 2 个字符的字符串，并将所有字符串转换为小写，返回字符串列表
+    '''
+    import re
+    # 使用正则表达式来切分句子，其中分隔符是除单词、数字外的任意字符串
+    listOfTokens = re.split(r'\W*', bigString)
+    return [tok.lower() for tok in listOfTokens if len(tok) > 2]
 
