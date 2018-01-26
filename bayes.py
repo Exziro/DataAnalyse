@@ -191,4 +191,25 @@ def textParse(bigString):
     # 使用正则表达式来切分句子，其中分隔符是除单词、数字外的任意字符串
     listOfTokens = re.split(r'\W*', bigString)
     return [tok.lower() for tok in listOfTokens if len(tok) > 2]
-
+def spamTest():
+    '''
+    Desc:
+        对贝叶斯垃圾邮件分类器进行自动化处理。
+    Args:
+        none
+    Returns:
+        对测试集中的每封邮件进行分类，若邮件分类错误，则错误数加 1，最后返回总的错误百分比。
+    '''
+    docList = []
+    classList = []
+    fullText = []
+    for i in range(1, 26):
+        # 切分，解析数据，并归类为 1 类别
+        wordList = textParse(open('input/4.NaiveBayes/email/spam/%d.txt' % i).read())
+        docList.append(wordList)
+        classList.append(1)
+        # 切分，解析数据，并归类为 0 类别
+        wordList = textParse(open('input/4.NaiveBayes/email/ham/%d.txt' % i).read())
+        docList.append(wordList)
+        fullText.extend(wordList)
+        classList.append(0)
