@@ -213,3 +213,28 @@ def spamTest():
         docList.append(wordList)
         fullText.extend(wordList)
         classList.append(0)
+            # 创建词汇表    
+    vocabList = createVocabList(docList)
+    trainingSet = range(50)
+    testSet = []
+    # 随机取 10 个邮件用来测试
+    for i in range(10):
+        # random.uniform(x, y) 随机生成一个范围为 x - y 的实数
+        randIndex = int(random.uniform(0, len(trainingSet)))
+        testSet.append(trainingSet[randIndex])
+        del(trainingSet[randIndex])
+    trainMat = []
+    trainClasses = []
+    for docIndex in trainingSet:
+        trainMat.append(setOfWords2Vec(vocabList, docList[docIndex]))
+        trainClasses.append(classList[docIndex])
+    p0V, p1V, pSpam = trainNB0(array(trainMat), array(trainClasses))
+    errorCount = 0
+    for docIndex in testSet:
+        wordVector = setOfWords2Vec(vocabList, docList[docIndex])
+        if classifyNB(array(wordVector), p0V, p1V, pSpam) != classList[docIndex]:
+            errorCount += 1
+    print 'the errorCount is: ', errorCount
+    print 'the testSet length is :', len(testSet)
+    print 'the error rate is :', float(errorCount)/len(testSet)
+
