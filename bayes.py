@@ -248,5 +248,10 @@ def setOfWords2VecMN(vocabList,inputSet):
         if word in vocabList:
                 returnVec[vocabList.index(word)]+=1
     return returnVec
+#文件解析
+def textParse(bigString):
+    import re
+    listOfTokens=re.split(r'\W*', bigString)
+    return [tok.lower() for tok in listOfTokens if len(tok)>2]
 
 
