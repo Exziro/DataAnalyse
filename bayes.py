@@ -253,5 +253,12 @@ def textParse(bigString):
     import re
     listOfTokens=re.split(r'\W*', bigString)
     return [tok.lower() for tok in listOfTokens if len(tok)>2]
-
+#RSS源分类器及高频词去除函数
+def calcMostFreq(vocabList,fullText):
+    import operator
+    freqDict={}
+    for token in vocabList:  #遍历词汇表中的每个词
+        freqDict[token]=fullText.count(token)  #统计每个词在文本中出现的次数
+    sortedFreq=sorted(freqDict.iteritems(),key=operator.itemgetter(1),reverse=True)  #根据每个词出现的次数从高到底对字典进行排序
+    return sortedFreq[:30]   #返回出现次数最高的30个单词
 
